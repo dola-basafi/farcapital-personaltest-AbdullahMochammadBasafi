@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PenggunaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -28,7 +29,7 @@ Route::get('/login', function () {
 })->middleware(["noAuth"])->name('loginForm');
 
 
-Route::get('/logout',[AuthController::class, 'logout'])->name('logout');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/register', function () {
     return view('register');
@@ -41,8 +42,21 @@ Route::get('/pengguna/persyaratan', function () {
 })->middleware(["WithAuth"])->name('pengguna.persyaratanForm');
 
 Route::post('/pengguna/persyaratan', [PenggunaController::class, 'persyaratan'])
-->middleware(["WithAuth"])->name('persyaratan');
+    ->middleware(["WithAuth"])->name('persyaratan');
 
-// Route::middleware(["widtAuth"])->group(function(){
-//     Route::get('/logout',[AuthController::class, 'logout'])->name('logout');
-// });
+// petugas
+
+Route::get('/dashboard', [AdminController::class, 'dashboard'])->middleware(["PetugasAuth"])->name('dashboard');
+
+
+Route::get('/detail/{id}', [AdminController::class, 'detail'])
+    ->middleware(["PetugasAuth"])
+    ->name('penggunaData');
+
+Route::get('/checkup/{id}', [AdminController::class,'chekupform'])
+    ->middleware(["PetugasAuth"])
+    ->name('checkupData');
+
+Route::post('/checkup/{id}', [AdminController::class, 'checkup'])
+    ->middleware(["PetugasAuth"])
+    ->name('checkup');

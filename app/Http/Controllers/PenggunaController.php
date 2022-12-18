@@ -10,7 +10,6 @@ class PenggunaController extends Controller
 {
     function register(Request $request)
     {
-
         if (is_numeric($request->input('nik'))) {
             $request['nik'] = strval($request->input('nik'));
         } else {
@@ -30,20 +29,18 @@ class PenggunaController extends Controller
         return redirect()->route('login');
     }
     function persyaratan(Request $request)
-    {
-        
+    {        
         foreach ($request->input() as $key =>$value) {
             if($key == "_token"){
                 continue;
             }
             if($value == 0){                
-                return view('index');
+                return redirect()->route('logout');
             }
-            $pengguna = Pengguna::find();
-            $pengguna->statusPersyaratan = 1;
-            return view('index');
         }
-
-        // dd($request->input());
+        $pengguna = Pengguna::find($request->input('id'));
+        $pengguna->statusPersyaratan = 1;
+        $pengguna->save();
+        return redirect()->route('logout');
     }
 }

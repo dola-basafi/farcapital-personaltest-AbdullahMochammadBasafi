@@ -24,11 +24,11 @@ class PetugasAuth
                     'msg' => 'mohon login terlebih dahulu'
                 ]);
         }
-        if (!session()->get('role',false)){
+        if (session()->get('role') == 0){
             return redirect()
                 ->route('login')
                 ->withErrors([
-                    'msg' => 'maaf anda bukan patugas'
+                    'msg' => 'maaf anda bukan petugas'
                 ]);
         }
         return $next($request);

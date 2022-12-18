@@ -17,9 +17,16 @@ class WithAuth
     public function handle(Request $request, Closure $next)
     {
         if(!session()->isStarted()) session()->start();
+        if (session()->get('role')){
+            return redirect()
+            ->route('index')
+            ->withErrors([
+                'msg' => 'anda bukan pendonor'
+            ]);
+        }
         if (!session()->get('logged',false)){
             return redirect()
-                ->route('login.form')
+                ->route('index')
                 ->withErrors([
                     'msg' => 'mohon login terlebih dahulu'
                 ]);

@@ -34,6 +34,9 @@ class AuthController extends Controller
         session()->put("logged", true);
         session()->put("role", $pengguna->role);
         session()->put('idPengguna', $pengguna->id);
+        if($pengguna->role == 1){
+            return redirect()->route('dashboard');
+        }
         return redirect()->route('pengguna.persyaratanForm');
     }
     function logout()
