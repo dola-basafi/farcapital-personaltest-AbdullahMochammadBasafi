@@ -11,7 +11,7 @@
 
 <body>
     <div class="container">
-        <div>
+        <div class="text-end">
             @if (session()->get('idPengguna'))
                 @if (session()->get('role'))
                     <a href="{{ route('dashboard') }}" class="btn btn-warning">DASHBOARD</a>

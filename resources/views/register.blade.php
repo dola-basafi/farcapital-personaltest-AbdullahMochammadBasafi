@@ -4,6 +4,7 @@
 
     <form method="POST" action="{{ route('register') }}">
         @csrf
+        {{-- {{ old('nik', '') }} --}}
         <div class="mb-3">
             <label for="nik" class="form-label">NIK</label>
             <input type="nik" class="form-control" name="nik" id="nik">

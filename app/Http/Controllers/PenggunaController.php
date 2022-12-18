@@ -29,16 +29,19 @@ class PenggunaController extends Controller
         return redirect()->route('login');
     }
     function persyaratan(Request $request)
-    {        
-        foreach ($request->input() as $key =>$value) {
-            if($key == "_token"){
+    {
+        $pengguna = Pengguna::find($request->input('id'));
+        foreach ($request->input() as $key => $value) {
+            if ($key == "_token") {
                 continue;
             }
-            if($value == 0){                
+            if ($value == 0) {
+                $pengguna->statusPersyaratan = 0;
+                $pengguna->save();
                 return redirect()->route('logout');
             }
         }
-        $pengguna = Pengguna::find($request->input('id'));
+
         $pengguna->statusPersyaratan = 1;
         $pengguna->save();
         return redirect()->route('logout');
