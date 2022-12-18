@@ -2,6 +2,9 @@
 @section('title', 'Register')
 @section('content')
 
+<div class="text-end pt-5">
+    <a href="{{ route('index') }}" class="btn btn-info">KEMBALI</a>
+</div>
     <form method="POST" action="{{ route('register') }}">
         @csrf
         {{-- {{ old('nik', '') }} --}}

@@ -14,7 +14,9 @@
         <div class="text-end">
             @if (session()->get('idPengguna'))
                 @if (session()->get('role'))
+                    @if (!isset($dashboard))                        
                     <a href="{{ route('dashboard') }}" class="btn btn-warning">DASHBOARD</a>
+                    @endif
                 @endif
                 <a href="{{ route('logout') }}" class="btn btn-success">LOGOUT</a>
             @endif

@@ -1,3 +1,8 @@
+@php
+    $dashboard=true;
+@endphp
+    
+
 @extends('template')
 @section('title', 'Halaman Utama')
 

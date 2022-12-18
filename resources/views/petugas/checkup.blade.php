@@ -2,7 +2,7 @@
 @section('title', 'Halaman Utama')
 
 @section('content')
-    <form method="POST" action="{{ route('checkup',['id'=>$id]) }}">
+    <form method="POST" action="{{ route('checkup', ['id' => $id]) }}">
         @csrf
         {{-- <input type="hidden" name="id" value="{{$id}}"> --}}
         {{-- cek1 --}}
@@ -11,10 +11,11 @@
             mendapat izin tertulis dari orangtua) ?</label>
         <div class="mb-3">
             <label class="radio-inline ">
-                <input type="radio" name="cek1" id="cek1" value="1" {{$umur>16 ? 'checked':''}}> YA
+                <input type="radio" name="cek1" id="cek1" value="1" {{ $umur > 16 && $umur < 60 ? 'checked' : '' }}> YA
             </label>
             <label class="radio-inline">
-                <input type="radio" name="cek1" id="cek1" value="0" {{$umur>16 ? '':'checked'}}> TIDAK
+                <input type="radio" name="cek1" id="cek1" value="0"
+                    {{ $umur > 16 && $umur < 60 ? '' : 'checked' }}> TIDAK
             </label>
         </div>
         {{-- cek2 --}}
