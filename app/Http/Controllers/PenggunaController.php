@@ -25,7 +25,6 @@ class PenggunaController extends Controller
         ];
         $validated = $request->validate($validated);
         Pengguna::create($validated);
-
         return redirect()->route('login');
     }
     function persyaratan(Request $request)

@@ -26,7 +26,7 @@ class PetugasAuth
         }
         if (session()->get('role') == 0){
             return redirect()
-                ->route('login')
+                ->route('index')
                 ->withErrors([
                     'msg' => 'maaf anda bukan petugas'
                 ]);
