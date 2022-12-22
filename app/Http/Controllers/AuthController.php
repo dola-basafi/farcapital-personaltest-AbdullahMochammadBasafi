@@ -10,6 +10,7 @@ class AuthController extends Controller
 {
     function login(Request $request)
     {       
+        
         $nik = $request->input('nik');
         $password = $request->input('password');        
 
